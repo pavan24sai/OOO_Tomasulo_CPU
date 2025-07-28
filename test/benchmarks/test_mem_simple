@@ -1,0 +1,39 @@
+/*
+    Benchmark testing simple load and store sequences.
+    Mem[0] = 0, Mem[4] = 4, Mem[8] = 8, Mem[12] = 12, Mem[16] = 16
+*/
+
+/*
+    sw x0, 0(x0)
+
+    addi x1, x0, 4
+    add x2, x1, x1
+
+    sw x1, 0(x1)
+    sw x2, 8(x0)
+
+    add x1, x1, x2
+    
+    lw x3, 4(x0) # load mem[4] = 4
+    sw x1, 8(x3) # store 12 at mem[8+4]
+    lw x4, 0(x2) # load mem[8] = 8
+
+    add x4, x4, x2
+    sw x4, 4(x1) # store 8 at mem[4+12]
+
+    END:
+	 jal x0, END
+*/
+
+00002023
+00400093
+00108133
+0010a023
+00202423
+002080b3
+00402183
+0011a423
+00012203
+00220233
+0040a223
+0000006f

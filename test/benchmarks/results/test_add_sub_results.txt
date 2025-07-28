@@ -1,0 +1,9 @@
+ffffffff // check registers
+00000000
+fffffffc
+fffffffc
+00000004
+fffffffc
+fffffff6
+00000000
+fffffffa

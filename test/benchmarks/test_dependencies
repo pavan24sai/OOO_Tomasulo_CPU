@@ -1,0 +1,28 @@
+/*
+   Benchmark testing R and I type instructions with EXMEM and MEMWB forwarding.
+   Expected results: 
+   x1 = 5, x2 = 15, x3 = 20, x4 = 10, x5 = 30, x6 = -20, x7 = -5
+*/
+
+/*
+  addi x1, x0, 5
+  addi x2, x1, 10
+  addi x3, x2, 5
+  addi x4, x2, -5
+  add x5, x4, x3
+  sub x6, x4, x5
+  add x7, x2, x6
+
+  NOP x3
+*/
+
+00500093
+00a08113
+00510193
+ffb10213
+003202b3
+40520333
+006103b3
+00000000
+00000000
+00000000

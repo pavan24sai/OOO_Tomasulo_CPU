@@ -1,0 +1,55 @@
+/* 
+	Benchmark testing simple SB instructions including bne, beq, blt, and jal.
+	TODO: re-assemble!
+	Expected results:
+    R[1] = 0, R[2] = 10, R[3] = 2, R[4] = 2048, R[5] = 2, R[6] = 72, R[7] = 48, R[8] = 0
+*/
+
+/*
+	add x1, x0, x0      # 0
+    add x8, x0, x0      # 4
+    addi x2, x0, 10     # 8
+    addi x3, x0, 2      # 12
+	addi x4, x0, 2      # 16
+    addi x5, x0, 1024   # 20
+    addi x5, x5, 1024   # 24
+
+    INCR:
+    addi x1 , x1, 1     # 28
+    mul x4, x4, x3      # 32
+    div x5, x5, x3      # 36
+    bne x1 , x2, INCR   # 40
+    
+    jal x7, NEXT       # 44
+    addi x7, x0, -500  # 48
+    
+    NEXT:
+    beq x1, x2, DECR    # 52
+    jal x8, NEXT       # 56
+	  
+    DECR:
+    addi x1, x1, -1     # 60
+    blt x0, x1, DECR    # 64
+	 
+	 END:
+	 jal x6, END       # 68
+*/
+
+000000b3
+00000433
+00a00113
+00200193
+00200213
+40000293
+40028293
+00108093
+02320233
+0232c2b3
+fe209ae3
+008003ef
+e0c00393
+00208463
+ffdff46f
+fff08093
+fe104ee3
+0000036f

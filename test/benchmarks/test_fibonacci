@@ -1,0 +1,46 @@
+/*
+    Benchmark running fibonacci sequence using arithmetic, multiply, branches, and load/store.
+    Expected Results. Memory addresses listed in order, incrementing by 4
+    R[5] = 19
+*/
+
+/*
+    addi x1, x0, 2	# 0
+    addi x30, x0, 20	# 4
+    addi x31, x0, 4	# 8
+    addi x2, x0, 0	# 12
+    addi x3, x0, 1	# 16
+    sw x2, 0(x0)	# 20
+    sw x3, 4(x0)	# 24
+
+    LOOP:
+      mul x5, x1, x31  # store address	# 28
+      add x4, x2, x3  # next value in Fibonacci	# 32
+      sw x4, 0(x5)	# 36
+      add x2, x3, x0	# 40
+      add x3, x4, x0	# 44
+      addi x1, x1, 1  # increment loop variable # 48
+      bne x1, x30, LOOP	# 52
+    
+      div x5, x5, x31 	# 56
+    
+    END:
+        jal x0, END	# 60
+*/
+
+00200093
+01400f13
+00400f93
+00000113
+00100193
+00202023
+00302223
+03f082b3
+00310233
+0042a023
+00018133
+000201b3
+00108093
+ffe094e3
+03f2c2b3
+0000006f

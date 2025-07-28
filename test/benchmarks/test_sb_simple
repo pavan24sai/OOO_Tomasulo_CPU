@@ -1,0 +1,53 @@
+/* 
+	Benchmark testing simple SB instructions including bne, beq, blt, and jal.
+	
+	Expected results:
+	DATA_MEM should store [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+	as words in ascending addresses.
+	R[31] = 32, R[30] = xxxx, R[29] = 64
+*/
+
+/*
+	add x1 , x0, x0
+    addi x2 , x0, 10
+	add x3, x0, x0
+
+    INCR:
+	sw x1, 0(x3)
+    addi x3, x3, 4
+    addi x1 , x1, 1
+    bne x1 , x2, INCR
+    
+    jal x0, NEXT
+    sw x1, 0(x0)
+    
+    NEXT:
+    beq x1, x2, DECR
+    sw x1, 4(x0)
+	  
+    DECR:
+    sw x1, 0(x3)
+    addi x3, x3, 4
+    addi x1, x1, -1
+    blt x0, x1, DECR
+	 
+	END:
+	jal x0, END
+*/
+
+000000b3
+00a00113
+000001b3
+0011a023
+00418193
+00108093
+fe209ae3
+0080006f
+00102023
+00208463
+00102223
+0011a023
+00418193
+fff08093
+fe104ae3
+0000006f
